@@ -1,5 +1,10 @@
 # Baby-Kyber
 
+compile with 
+
+gcc -fsanitize=address -g -o baby_kyber_demo main.c BabyKyber.c
+
+
 Baby-Kyber is a simple toy implementation of the [Kyber](https://en.wikipedia.org/wiki/Kyber) crypto-system. The details are explained in this great [blog post](https://cryptopedia.dev/posts/kyber/).
 
 # Contents
