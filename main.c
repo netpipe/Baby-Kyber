@@ -26,6 +26,16 @@ void bits_to_string(const int* bits, int bit_len, char* output) {
     }
     output[byte_count] = '\0';
 }
+// Assuming public key is stored in an array or matrix as `public_key[2][4]`
+void PrintPublicKey(int public_key[][4], int length) {
+    printf("Public Key:\n");
+    for (int i = 0; i < length; i++) {
+        for (int j = 0; j < 4; j++) {
+            printf("%d ", public_key[i][j]);
+        }
+        printf("\n");
+    }
+}
 
 int main() {
     // Sample message

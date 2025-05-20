@@ -18,7 +18,7 @@ int* multiply(int a[4], int b[4])
 	// temp to store values of natrix multiplication
 	for (int i = 0; i < 4; i++){
 		for (int j = 0; j < 4; j++){
-			printf("%d * %d = %d\r\n", a[i], b[j], a[i] * b[j]);
+        //	printf("%d * %d = %d\r\n", a[i], b[j], a[i] * b[j]);
 			res[i + j] += a[i] * b[j];
 		}
 	}
@@ -127,22 +127,22 @@ void GenerateT(int A[4][4], int s[2][4], int e[2][4], int t[2][4])
 		int* vector1 = multiply(A[0 + i], s[0]);
 		int* vector2 = multiply(A[1 + i], s[1]);
 
-		printf("Vector1: \r\n");
-		PrintPoly(vector1, 7);
+    //	printf("Vector1: \r\n");
+        //PrintPoly(vector1, 7);
 
 
 		int* addedRes = AddVectors(vector1, vector2, 7);
 		free(vector1);
 		free(vector2);
 
-		printf("After Add: \r\n");
-		PrintPoly(addedRes, 7);
+    //	printf("After Add: \r\n");
+        //PrintPoly(addedRes, 7);
 
 		// poly div
 		PolyDiv(addedRes);
 
-		printf("After Poly: \r\n");
-		PrintPoly(addedRes, 4);
+        //printf("After Poly: \r\n");
+        //PrintPoly(addedRes, 4);
 
 		// copy values from addedRes to t
 
@@ -171,29 +171,29 @@ void Encrypt(int A[2][4], int t[2][4], int r[2][4], int e1[2][4], int e2[4], int
         data[i] *= -q;
     }
 
-    printf("Checking upslacing: \r\n");
-    PrintPoly(data, 4);
+   // printf("Checking upslacing: \r\n");
+    //PrintPoly(data, 4);
 
     // Calculate u
     for (int i = 0; i < length / 2; i++) {
         int* res1 = multiply(A[i], r[0]);
         int* res2 = multiply(A[i + 2], r[1]);
 
-        printf("Res1: \r\n");
-        PrintPoly(res1, 7);
+      //  printf("Res1: \r\n");
+      //  PrintPoly(res1, 7);
 
-        printf("Res2: \r\n");
-        PrintPoly(res2, 7);
+      //  printf("Res2: \r\n");
+      //  PrintPoly(res2, 7);
 
         int* addRes = AddVectors(res1, res2, maxLengthPoly);
 
-        printf("Added Res: \r\n");
-        PrintPoly(addRes, 7);
+      //  printf("Added Res: \r\n");
+      //  PrintPoly(addRes, 7);
 
         PolyDiv(addRes);
 
-        printf("After Reduction: \r\n");
-        PrintPoly(addRes, 7);
+      //  printf("After Reduction: \r\n");
+       // PrintPoly(addRes, 7);
 
         for (int j = 0; j < length; ++j) {
             u[i][j] = addRes[j];
@@ -209,8 +209,8 @@ void Encrypt(int A[2][4], int t[2][4], int r[2][4], int e1[2][4], int e2[4], int
 
     // Add to u
     int* temp1 = AddVectors(u[0], e1[0], length);
-    printf("After error Add: \r\n");
-    PrintPoly(temp1, length);
+    //printf("After error Add: \r\n");
+    //PrintPoly(temp1, length);
 
     int* temp2 = AddVectors(u[1], e1[1], length);
 
@@ -223,9 +223,9 @@ void Encrypt(int A[2][4], int t[2][4], int r[2][4], int e1[2][4], int e2[4], int
     free(temp2);
 
     // print u
-    printf("U values:\r\n");
-    PrintPoly(u[0], length);
-    PrintPoly(u[1], length);
+    //printf("U values:\r\n");
+   // PrintPoly(u[0], length);
+   // PrintPoly(u[1], length);
 
     // generate v now
     int* vTemp1 = multiply(t[0], r[0]);
@@ -240,8 +240,8 @@ void Encrypt(int A[2][4], int t[2][4], int r[2][4], int e1[2][4], int e2[4], int
     int* addE2 = AddVectors(vAdded, e2, 4);
     free(vAdded);
 
-    printf("v:\r\n");
-    PrintPoly(addE2, 4);
+    //printf("v:\r\n");
+    //PrintPoly(addE2, 4);
 
     int* vFinal = AddVectors(addE2, data, 4);
     free(addE2);
@@ -249,8 +249,8 @@ void Encrypt(int A[2][4], int t[2][4], int r[2][4], int e1[2][4], int e2[4], int
     memcpy(v, vFinal, sizeof(int) * 4);
     free(vFinal);
 
-    printf("v:\r\n");
-    PrintPoly(v, 4);
+    //printf("v:\r\n");
+    //PrintPoly(v, 4);
 }
 
 // decrypts the polynomial with u and v
@@ -278,7 +278,7 @@ void Decrypt(int s[][4], int u[][4], int v[4], int* res)
     free(s_by_u);
 
     // Print the decrypted result
-    PrintPoly(res, 4);
+    //PrintPoly(res, 4);
 
     // Check and modify the coefficients
     for (int i = 0; i < 4; ++i){
